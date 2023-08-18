@@ -9,12 +9,12 @@ import { WeatherData } from 'src/app/types';
   providedIn: 'root'
 })
 export class WeatherService {
-  private baseUrl = `https://api.hgbrasil.com/weather?key=${apiKeyWeather}`
+  private baseUrl = `https://api.hgbrasil.com/weather?format=json-cors&key=${apiKeyWeather}`
 
   constructor(private http: HttpClient) { }
 
   getDataByCity(cityName: string): Observable<WeatherData> {
     const endpoint = `${this.baseUrl}&city_name=${cityName}`
     return this.http.get<WeatherData>(endpoint)
-  } 
+  }
 }
