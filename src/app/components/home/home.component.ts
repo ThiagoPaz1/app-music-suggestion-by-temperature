@@ -9,7 +9,10 @@ import { WeatherData } from 'src/app/types';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  cityName: string = ''
+  invalidCityName: boolean = false
   currentTempData: WeatherData = {
+    by: '',
     results: {
       temp: '',
       city: ''
@@ -19,11 +22,27 @@ export class HomeComponent implements OnInit {
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
-    this.getWeatherData()
+  }
+
+  checkCityName(): boolean {
+    return Boolean(this.cityName)
   }
 
   getWeatherData() {
-    this.weatherService.getDataByCity('maceio')
-      .subscribe(w => this.currentTempData = w)
+    if (this.checkCityName()) {
+      this.weatherService.getDataByCity(this.cityName)
+        .subscribe((weather) => {
+          if (weather.by === 'default') {
+            this.currentTempData.results.city = ''
+            this.invalidCityName = true
+          } else {
+            this.invalidCityName = false
+            this.currentTempData = weather
+          }
+        })
+    } else {
+      this.currentTempData.results.city = ''
+      this.invalidCityName = true
+    }
   }
 }

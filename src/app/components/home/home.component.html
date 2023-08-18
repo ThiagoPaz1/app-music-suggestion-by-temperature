@@ -1,9 +1,18 @@
 <div>
   <form>
-    <input type="text" placeholder="Pesquise uma localidade">
-    <input type="submit" value="Pesquisar">
+    <input type="text" placeholder="Digite o nome de uma cidade" [(ngModel)]="cityName" name="cityName">
+    <button (click)="getWeatherData()">
+      buscar
+    </button>
   </form>
-  <h2>
-    Olá a temperatura atual em {{ currentTempData.results.city }} é de {{ currentTempData.results.temp }} graus
-  </h2>
+
+  <div>
+    <h2 *ngIf="invalidCityName">
+      Digite o nome de uma cidade valido
+    </h2>
+
+    <h2 *ngIf="currentTempData.results.city">
+      Olá a temperatura atual em {{ currentTempData.results.city }} é de {{ currentTempData.results.temp }} graus
+    </h2>
+  </div>
 </div>
