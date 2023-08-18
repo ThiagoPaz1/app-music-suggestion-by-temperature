@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { apiKeyWeather } from 'src/environments/apiKey';
+import { WeatherData } from 'src/app/types';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class WeatherService {
 
   constructor(private http: HttpClient) { }
 
-  getDataByCity() {
-
+  getDataByCity(cityName: string): Observable<WeatherData> {
+    const endpoint = `${this.baseUrl}&city_name=${cityName}`
+    return this.http.get<WeatherData>(endpoint)
   } 
 }
