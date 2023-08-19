@@ -1,6 +1,5 @@
 enum CodeResponse {
-  success = 200,
-  error = 404 | 400
+  success = 200
 }
 
 export type WeatherData = {
@@ -8,5 +7,8 @@ export type WeatherData = {
   cod: CodeResponse
   main: {
     temp: string
+  }
+  error?: {
+    cod: number
   }
 }

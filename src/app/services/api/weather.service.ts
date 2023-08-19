@@ -15,6 +15,7 @@ export class WeatherService {
 
   getDataByCity(cityName: string): Observable<WeatherData> {
     const endpoint = `${this.baseUrl}&q=${cityName}`
+
     return this.http.get<WeatherData>(endpoint)
   }
 }
