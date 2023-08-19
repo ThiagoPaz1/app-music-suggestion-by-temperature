@@ -1,8 +1,6 @@
 export type Genres = {
-  rockId: string
-  popId: string
-  countryId: string
-  alternativeId: string
+  listid: string
+  urlPath: string
 }
 
 export type GenresResponse = {

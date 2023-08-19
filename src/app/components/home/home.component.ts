@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
 
 import { WeatherService } from 'src/app/services/api/weather.service';
-import { WeatherData } from 'src/app/types';
+import { MusicService } from 'src/app/services/api/music.service';
+import { WeatherData, Genres } from 'src/app/types';
 
 @Component({
   selector: 'app-home',
@@ -20,9 +21,15 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  constructor(private weatherService: WeatherService) { }
+  genresMusics: Genres[] = []
+
+  constructor(
+    private weatherService: WeatherService,
+    private musicService: MusicService
+  ) { }
 
   ngOnInit(): void {
+    this.saveGenresMusics()
   }
 
   checkCityName(): boolean {
@@ -52,6 +59,26 @@ export class HomeComponent implements OnInit {
     } else {
       this.currentTempData.name = ''
       this.invalidCityName = true
+    }
+  }
+
+  checkGenres(genre: string): boolean {
+    return genre === 'pop' ||
+      genre === 'rock' ||
+      genre === 'alternative' ||
+      genre === 'country'
+  }
+
+  saveGenresMusics() {
+    const checkGenresMusicsInStorage = localStorage.getItem('storagedGenresMusics')
+
+    if (!checkGenresMusicsInStorage) {
+      this.musicService.getGenres().subscribe(
+        (music) => {
+          this.genresMusics = music.global.genres.filter(i => this.checkGenres(i.urlPath))
+          localStorage.setItem('storagedGenresMusics', JSON.stringify(this.genresMusics))
+        }
+      )
     }
   }
 }
