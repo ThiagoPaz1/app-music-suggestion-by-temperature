@@ -1,6 +1,5 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { catchError, finalize } from 'rxjs';
+import { finalize } from 'rxjs';
 
 import { WeatherService } from 'src/app/services/api/weather.service';
 import { WeatherData } from 'src/app/types';
