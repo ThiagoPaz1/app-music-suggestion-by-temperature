@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { apiKeyMusic } from 'src/environments/apiKey';
-import { Genres } from 'src/app/types';
+import { GenresResponse } from 'src/app/types';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class MusicService {
 
   constructor(private http: HttpClient) { }
 
-  getGenres() {
-    this.http.get(`${this.baseUrl}/list`, {
+  getGenres(): Observable<GenresResponse> {
+    return this.http.get<GenresResponse>(`${this.baseUrl}/list`, {
       headers: this.headers
     })
   }
