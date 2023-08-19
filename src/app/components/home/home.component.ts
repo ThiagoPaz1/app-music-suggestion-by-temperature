@@ -9,13 +9,13 @@ import { WeatherData } from 'src/app/types';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  loading: boolean = false
   cityName: string = ''
   invalidCityName: boolean = false
   currentTempData: WeatherData = {
-    by: '',
-    results: {
+    name: '',
+    main: {
       temp: '',
-      city: ''
     }
   }
 

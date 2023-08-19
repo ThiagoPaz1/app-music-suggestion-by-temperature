@@ -6,12 +6,17 @@
     </button>
   </form>
 
+  
   <div>
-    <h2 *ngIf="invalidCityName">
+    <p *ngIf="loading">
+      carregando...
+    </p>
+    
+    <h2 *ngIf="invalidCityName && !loading">
       Digite o nome de uma cidade valido
     </h2>
 
-    <h2 *ngIf="currentTempData.results.city">
+    <h2 *ngIf="currentTempData.results.city && !loading">
       Olá a temperatura atual em {{ currentTempData.results.city }} é de {{ currentTempData.results.temp }} graus
     </h2>
   </div>
