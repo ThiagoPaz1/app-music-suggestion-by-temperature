@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { catchError } from 'rxjs';
+import { catchError, finalize } from 'rxjs';
 
 import { WeatherService } from 'src/app/services/api/weather.service';
 import { WeatherData } from 'src/app/types';
@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   invalidCityName: boolean = false
   currentTempData: WeatherData = {
     name: '',
-    cod: 200,
     main: {
       temp: '',
     }
@@ -30,9 +29,15 @@ export class HomeComponent implements OnInit {
   checkCityName(): boolean {
     return Boolean(this.cityName)
   }
+
   getWeatherData() {
     if (this.checkCityName()) {
+      this.loading = true
+
       this.weatherService.getDataByCity(this.cityName)
+        .pipe(
+          finalize(() => this.loading = false)
+        )
         .subscribe(
           (weather) => {
             this.cityName = ''
