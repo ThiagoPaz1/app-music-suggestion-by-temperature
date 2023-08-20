@@ -1,4 +1,4 @@
-export type Genres = {
+export type Genre = {
   listid: string
   urlPath: string
 }
@@ -13,6 +13,8 @@ export type GenresResponse = {
 }
 
 export type Music = {
-  searchDate?: string
-  title: string
+  searchDate?: Date
+  tracks: {
+    title: string
+  }[]
 }

@@ -3,7 +3,8 @@ import { finalize } from 'rxjs';
 
 import { WeatherService } from 'src/app/services/api/weather.service';
 import { MusicService } from 'src/app/services/api/music.service';
-import { WeatherData, Genres } from 'src/app/types';
+import { WeatherData, Genre, Music } from 'src/app/types';
+import { dateFormat } from 'src/app/utils/dateFormat';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  genresMusics: Genres[] = []
+  genresMusics: Genre[] = []
+  listMusicData: Music = {
+    searchDate: new Date,
+    tracks: []
+  }
 
   constructor(
     private weatherService: WeatherService,
@@ -48,7 +53,8 @@ export class HomeComponent implements OnInit {
           (weather) => {
             this.cityName = ''
             this.invalidCityName = false
-            this.currentTempData = weather
+            this.currentTempData = { name: weather.name, main: weather.main }
+            console.log(this.currentTempData)
           },
           (error) => {
             this.cityName = ''
@@ -80,5 +86,33 @@ export class HomeComponent implements OnInit {
         }
       )
     }
+  }
+
+  getListMusicByTemp(temp: number) {
+    let verifyTemp: boolean = false
+
+    switch (verifyTemp) {
+      case temp > 32:
+        this.addListMusicData('rock')
+        break;
+      case temp > 24:
+        this.addListMusicData('pop')
+        break;
+      case temp > 16:
+        this.addListMusicData('alternative')
+        break;
+      default:
+        this.addListMusicData('country')
+    }
+  }
+
+  addListMusicData(genre: string) {
+    const getGenresMusicsInStorage: Genre[] = JSON.parse(localStorage.getItem('storagedGenresMusics') as string)
+    const getGenreMusic = getGenresMusicsInStorage.find(i => i.urlPath === genre) as Genre
+    const listIdRock = getGenreMusic.urlPath as string
+
+    this.musicService.getListMusicByGenre(listIdRock).subscribe(
+      (m) => this.listMusicData = { searchDate: new Date(), tracks: m.tracks }
+    )
   }
 }

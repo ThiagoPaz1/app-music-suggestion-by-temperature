@@ -1,9 +1,9 @@
 import { WeatherData } from './weather';
-import { Genres, GenresResponse, Music } from './music';
+import { Genre, GenresResponse, Music } from './music';
 
 export {
   WeatherData,
-  Genres,
+  Genre,
   GenresResponse,
   Music
 }
