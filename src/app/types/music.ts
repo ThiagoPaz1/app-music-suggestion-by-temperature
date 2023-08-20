@@ -11,3 +11,8 @@ export type GenresResponse = {
     }[]
   }
 }
+
+export type Music = {
+  searchDate?: string
+  title: string
+}
