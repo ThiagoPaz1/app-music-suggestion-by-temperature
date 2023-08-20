@@ -6,12 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { RecommendedSongsListComponent } from './components/home/recommended-songs-list/recommended-songs-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    RecommendedSongsListComponent
   ],
   imports: [
     BrowserModule,
