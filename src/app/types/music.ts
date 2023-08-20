@@ -14,6 +14,7 @@ export type GenresResponse = {
 
 export type Music = {
   searchDate?: Date
+  genre: string
   tracks: {
     title: string
   }[]

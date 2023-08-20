@@ -18,12 +18,14 @@ export class HomeComponent implements OnInit {
   currentTempData: WeatherData = {
     name: '',
     main: {
-      temp: '',
+      temp: 0,
     }
   }
 
+  loadingMusics: boolean = false
   genresMusics: Genre[] = []
   listMusicData: Music = {
+    genre: '',
     searchDate: new Date,
     tracks: []
   }
@@ -54,7 +56,7 @@ export class HomeComponent implements OnInit {
             this.cityName = ''
             this.invalidCityName = false
             this.currentTempData = { name: weather.name, main: weather.main }
-            console.log(this.currentTempData)
+            this.getListMusicByTemp(weather.main.temp)
           },
           (error) => {
             this.cityName = ''
@@ -89,30 +91,27 @@ export class HomeComponent implements OnInit {
   }
 
   getListMusicByTemp(temp: number) {
-    let verifyTemp: boolean = false
+    if (temp > 32) this.addListMusicData('rock')
 
-    switch (verifyTemp) {
-      case temp > 32:
-        this.addListMusicData('rock')
-        break;
-      case temp > 24:
-        this.addListMusicData('pop')
-        break;
-      case temp > 16:
-        this.addListMusicData('alternative')
-        break;
-      default:
-        this.addListMusicData('country')
-    }
+    else if (temp > 24) this.addListMusicData('pop')
+
+    else if (temp > 16) this.addListMusicData('alternative')
+
+    else this.addListMusicData('country')
   }
 
   addListMusicData(genre: string) {
     const getGenresMusicsInStorage: Genre[] = JSON.parse(localStorage.getItem('storagedGenresMusics') as string)
     const getGenreMusic = getGenresMusicsInStorage.find(i => i.urlPath === genre) as Genre
-    const listIdRock = getGenreMusic.urlPath as string
+    const { listid, urlPath } = getGenreMusic
 
-    this.musicService.getListMusicByGenre(listIdRock).subscribe(
-      (m) => this.listMusicData = { searchDate: new Date(), tracks: m.tracks }
-    )
+    this.loadingMusics = true
+    this.musicService.getListMusicByGenre(listid)
+      .pipe(
+        finalize(() => this.loadingMusics = false)
+      )
+      .subscribe(
+        (m) => this.listMusicData = { searchDate: new Date(), tracks: m.tracks, genre: urlPath }
+      )
   }
 }

@@ -20,4 +20,6 @@
       Olá a temperatura atual em {{ currentTempData.name }} é de {{ currentTempData.main.temp }} graus
     </h2>
   </div>
+
+  <app-recommended-songs-list [musics]="listMusicData" [loading]="loadingMusics"></app-recommended-songs-list>
 </div>
