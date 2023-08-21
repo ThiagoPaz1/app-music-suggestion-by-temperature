@@ -1,0 +1,26 @@
+.containerApp {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+}
+
+.containerApp nav {
+  width: 100%;
+  padding: 1rem 0 1rem 0;
+  margin-bottom: 3rem;
+  text-align: center;
+  background-color: black;
+}
+
+.containerApp nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
+.containerApp nav a:hover {
+  border-bottom: 0.2rem white solid;
+}

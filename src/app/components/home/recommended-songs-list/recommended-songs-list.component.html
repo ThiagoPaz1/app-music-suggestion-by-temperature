@@ -1,14 +1,14 @@
-<div>
+<div class="containerRecommendedMusics">
   <p *ngIf="loading">
-    carregando...
+    <mat-spinner></mat-spinner>
   </p>
 
   <div *ngIf="musics.tracks.length && !loading">
-    <h3 *ngIf="playlistSave">
+    <h3 class="playlistSavedMessage" *ngIf="playlistSave">
       Playlist salva!
     </h3>
 
-    <div *ngIf="!playlistSave">
+    <div  class="containerRecommendedMusics" *ngIf="!playlistSave">
       <h3>
         Que tal salvar a playlist de {{ musics.genre }} para escutar depois ?
       </h3>
@@ -19,7 +19,9 @@
         </li>
       </ul>
       
-      <button (click)="savePlaylist()">salvar playlist</button>
+      <button class="buttonSavePlaylist" (click)="savePlaylist()">
+        Salvar playlist
+      </button>
     </div>
   </div>
 </div>

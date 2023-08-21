@@ -1,0 +1,34 @@
+.containerHomePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} 
+
+.containerHomePage form input {
+  width: 25rem;
+  padding: 1rem;
+  margin-bottom: 3rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 1.5px solid #515151;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.containerHomePage form button {
+  width: 8rem;
+  padding: 1.07rem;
+  font-size: 1rem;
+  font-weight: bolder;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #515151;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  cursor: pointer;
+}
+
+.containerHomePage div .warningMessage {
+  color: #FFBF00
+}

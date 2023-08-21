@@ -1,0 +1,62 @@
+.containerListsMusicsPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.containerListsMusicsPage h1 {
+  font-weight: bolder;
+}
+
+.containerListsMusicsPage ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.cardListMusics {
+  margin-bottom: 2rem;
+  padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+  border-radius: 0.5rem;
+  border: 1px #515151 solid;
+}
+
+.cardListMusics div {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.cardListMusics button {
+  padding: 0.5rem;
+  margin: 2rem 1rem 0 1rem;
+  font-size: 1em;
+  font-weight: bolder;
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.cardListMusics .buttonOpenList {
+  background-color: #515151;
+}
+
+.cardListMusics .buttonDeleteList {
+  background-color: red;
+}
+
+.cardListMusics ol  {
+  padding-left: 0;
+  margin-top: 2rem;
+  list-style: none;
+  text-align: center;
+}
+
+.cardListMusics ol h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.cardListMusics ol li {
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
