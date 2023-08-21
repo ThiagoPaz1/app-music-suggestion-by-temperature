@@ -23,9 +23,11 @@ export class ListsMusicsComponent implements OnInit {
   getListsMusics() {
     const listsMusicsStoraged: ListMusic[] = JSON.parse(localStorage.getItem('playlistMusics') as string)
 
-    if (listsMusicsStoraged.length) {
-      this.emptyMusicLists = false
-      this.listsMusicsData = listsMusicsStoraged
+    if (listsMusicsStoraged) {
+      if (listsMusicsStoraged.length) {
+        this.emptyMusicLists = false
+        this.listsMusicsData = listsMusicsStoraged
+      }
     } else {
       this.emptyMusicLists = true
     }
