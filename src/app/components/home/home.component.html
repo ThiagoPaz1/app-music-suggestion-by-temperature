@@ -1,18 +1,18 @@
-<div>
+<div class="containerHomePage">
   <form>
     <input type="text" placeholder="Digite o nome de uma cidade" [(ngModel)]="cityName" name="cityName" value=cityName>
     <button (click)="getWeatherData()">
-      buscar
+      Buscar
     </button>
   </form>
 
   <div>
     <p *ngIf="loading">
-      carregando...
+      <mat-spinner></mat-spinner>
     </p>
     
-    <h2 *ngIf="invalidCityName && !loading">
-      Digite o nome de uma cidade valido
+    <h2 class="warningMessage" *ngIf="invalidCityName && !loading">
+      Digite o nome de uma cidade valido!
     </h2>
 
     <h2 *ngIf="currentTempData.name && !loading">

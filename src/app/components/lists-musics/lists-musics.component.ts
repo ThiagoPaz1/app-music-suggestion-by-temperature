@@ -27,6 +27,8 @@ export class ListsMusicsComponent implements OnInit {
       if (listsMusicsStoraged.length) {
         this.emptyMusicLists = false
         this.listsMusicsData = listsMusicsStoraged
+      } else {
+        this.emptyMusicLists = true  
       }
     } else {
       this.emptyMusicLists = true
@@ -50,5 +52,9 @@ export class ListsMusicsComponent implements OnInit {
 
     localStorage.setItem('playlistMusics', JSON.stringify(updateListMusic))
     this.listsMusicsData = updateListMusic
+
+    if (!updateListMusic.length) {
+      this.emptyMusicLists = true
+    }
   }
 }

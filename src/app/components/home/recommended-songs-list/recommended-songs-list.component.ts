@@ -28,7 +28,7 @@ export class RecommendedSongsListComponent implements OnInit {
     const playlistMusics = localStorage.getItem('playlistMusics')
     const { musics } = this
     if (!playlistMusics) {
-      localStorage.setItem('playlistMusics', JSON.stringify(musics))
+      localStorage.setItem('playlistMusics', JSON.stringify([musics]))
     } else {
       const updatePlaylistMusics = [...JSON.parse(playlistMusics), musics]
       localStorage.setItem('playlistMusics', JSON.stringify(updatePlaylistMusics))

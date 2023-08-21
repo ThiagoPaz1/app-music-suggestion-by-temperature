@@ -1,4 +1,4 @@
-<div>
+<div class="containerListsMusicsPage">
   <h1>
     Listas de músicas
   </h1>
@@ -8,7 +8,7 @@
   </h3>
 
   <ul *ngIf="!emptyMusicLists">
-    <li *ngFor="let list of listsMusicsData">
+    <li class="cardListMusics" *ngFor="let list of listsMusicsData">
       <div>
         <p>
           Cidade: {{ list.city }}
@@ -23,14 +23,17 @@
           Gênero: {{ list.genre }}
         </p>
       </div>
-      <button (click)="deleteListMusic(list.id)">
-        remover lista
+      <button class="buttonOpenList" (click)="show(list.id)">
+        Abrir lista
       </button>
-      <button (click)="show(list.id)">
-        abrir lista
+      <button class="buttonDeleteList" (click)="deleteListMusic(list.id)">
+        Remover lista
       </button>
 
       <ol *ngIf="showMusics.listId === list.id">
+        <h3>
+          Músicas
+        </h3>
         <li *ngFor="let music of list.tracks">
           {{music.title}}
         </li>
