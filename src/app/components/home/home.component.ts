@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 import { WeatherService } from 'src/app/services/api/weather.service';
 import { MusicService } from 'src/app/services/api/music.service';
-import { WeatherData, Genre, Music } from 'src/app/types';
+import { WeatherData, Genre, ListMusic } from 'src/app/types';
 import { dateFormat } from 'src/app/utils/dateFormat';
 
 @Component({
@@ -24,9 +25,12 @@ export class HomeComponent implements OnInit {
 
   loadingMusics: boolean = false
   genresMusics: Genre[] = []
-  listMusicData: Music = {
+  listMusicData: ListMusic = {
+    id: '',
+    city: '',
+    temp: 0,
     genre: '',
-    searchDate: new Date,
+    date: '',
     tracks: []
   }
 
@@ -111,7 +115,14 @@ export class HomeComponent implements OnInit {
         finalize(() => this.loadingMusics = false)
       )
       .subscribe(
-        (m) => this.listMusicData = { searchDate: new Date(), tracks: m.tracks, genre: urlPath }
+        (m) => this.listMusicData = {
+          id: uuidv4(),
+          city: this.currentTempData.name,
+          temp: this.currentTempData.main.temp,
+          date: dateFormat(new Date()),
+          tracks: m.tracks,
+          genre: urlPath
+        }
       )
   }
 }
