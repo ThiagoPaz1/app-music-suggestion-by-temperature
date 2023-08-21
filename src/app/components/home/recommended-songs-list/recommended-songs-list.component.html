@@ -1,0 +1,25 @@
+<div>
+  <p *ngIf="loading">
+    carregando...
+  </p>
+
+  <div *ngIf="musics.tracks.length && !loading">
+    <h3 *ngIf="playlistSave">
+      Playlist salva!
+    </h3>
+
+    <div *ngIf="!playlistSave">
+      <h3>
+        Que tal salvar a playlist de {{ musics.genre }} para escutar depois ?
+      </h3>
+
+      <ul>
+        <li *ngFor="let music of musics.tracks">
+          {{ music.title }}
+        </li>
+      </ul>
+      
+      <button (click)="savePlaylist()">salvar playlist</button>
+    </div>
+  </div>
+</div>

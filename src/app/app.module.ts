@@ -6,12 +6,16 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { RecommendedSongsListComponent } from './components/home/recommended-songs-list/recommended-songs-list.component';
+import { ListsMusicsComponent } from './components/lists-musics/lists-musics.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    RecommendedSongsListComponent,
+    ListsMusicsComponent
   ],
   imports: [
     BrowserModule,
