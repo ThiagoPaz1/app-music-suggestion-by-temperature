@@ -6,7 +6,6 @@
     </button>
   </form>
 
-  
   <div>
     <p *ngIf="loading">
       carregando...
@@ -17,7 +16,7 @@
     </h2>
 
     <h2 *ngIf="currentTempData.name && !loading">
-      Olá a temperatura atual em {{ currentTempData.name }} é de {{ currentTempData.main.temp }} graus
+      Olá a temperatura atual em {{ currentTempData.name }} é de {{ currentTempData.main.temp }}° graus
     </h2>
   </div>
 

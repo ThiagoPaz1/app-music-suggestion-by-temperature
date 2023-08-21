@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Music } from 'src/app/types';
+import { ListMusic } from 'src/app/types';
 
 @Component({
   selector: 'app-recommended-songs-list',
@@ -9,7 +9,10 @@ import { Music } from 'src/app/types';
 })
 export class RecommendedSongsListComponent implements OnInit {
   @Input() loading: boolean = false
-  @Input() musics: Music = {
+  @Input() musics: ListMusic = {
+    id: '',
+    city: '',
+    temp: 0,
     genre: '',
     tracks: []
   }
@@ -23,11 +26,11 @@ export class RecommendedSongsListComponent implements OnInit {
 
   savePlaylist() {
     const playlistMusics = localStorage.getItem('playlistMusics')
-
+    const { musics } = this
     if (!playlistMusics) {
-      localStorage.setItem('playlistMusics', JSON.stringify(this.musics))
+      localStorage.setItem('playlistMusics', JSON.stringify(musics))
     } else {
-      const updatePlaylistMusics = [JSON.parse(playlistMusics), this.musics]
+      const updatePlaylistMusics = [...JSON.parse(playlistMusics), musics]
       localStorage.setItem('playlistMusics', JSON.stringify(updatePlaylistMusics))
     }
 

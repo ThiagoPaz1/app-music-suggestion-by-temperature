@@ -1,0 +1,40 @@
+<div>
+  <h1>
+    Listas de músicas
+  </h1>
+
+  <h3 *ngIf="emptyMusicLists">
+    Não a listas de músicas salvas no momento
+  </h3>
+
+  <ul *ngIf="!emptyMusicLists">
+    <li *ngFor="let list of listsMusicsData">
+      <div>
+        <p>
+          Cidade: {{ list.city }}
+        </p>
+        <p>
+          Temperatura: {{ list.temp }}° graus
+        </p>
+        <p>
+          Data de adição: {{ list.date }}
+        </p>
+        <p>
+          Gênero: {{ list.genre }}
+        </p>
+      </div>
+      <button (click)="deleteListMusic(list.id)">
+        remover lista
+      </button>
+      <button (click)="show(list.id)">
+        abrir lista
+      </button>
+
+      <ol *ngIf="showMusics.listId === list.id">
+        <li *ngFor="let music of list.tracks">
+          {{music.title}}
+        </li>
+      </ol>
+    </li>
+  </ul>
+</div>
